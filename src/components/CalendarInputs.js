@@ -1,3 +1,5 @@
+import { FaRegCalendarAlt, FaSeedling } from "react-icons/fa";
+
 export default function CalendarInputs({
                                            startDate,
                                            setStartDate,
@@ -6,23 +8,25 @@ export default function CalendarInputs({
                                            calculateFertility
                                        }) {
     return (
-        <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+        <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 mb-6 shadow-soft">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                        First day of last period:
+                <div className="space-y-2">
+                    <label className="block text-sm font-poppins font-medium text-blossom">
+                        <FaRegCalendarAlt className="inline mr-2 mb-1" />
+                        First Day
                     </label>
                     <input
                         type="date"
                         value={startDate}
                         onChange={(e) => setStartDate(e.target.value)}
-                        className="border border-gray-300 p-2 w-full rounded-md focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                        className="font-poppins border-2 border-lavender/20 rounded-xl p-3 w-full bg-white focus:border-blossom focus:ring-0"
                         max={new Date().toISOString().split('T')[0]}
                     />
                 </div>
-                <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                        Cycle length (days):
+                <div className="space-y-2">
+                    <label className="block text-sm font-poppins font-medium text-blossom">
+                        <FaSeedling className="inline mr-2 mb-1" />
+                        Cycle Length
                     </label>
                     <div className="flex items-center">
                         <input
@@ -31,21 +35,18 @@ export default function CalendarInputs({
                             max="45"
                             value={cycleLength}
                             onChange={(e) => setCycleLength(parseInt(e.target.value) || 28)}
-                            className="border border-gray-300 p-2 w-20 rounded-md focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+                            className="font-poppins border-2 border-lavender/20 rounded-xl p-3 w-20 bg-white focus:border-blossom focus:ring-0"
                         />
-                        <span className="ml-2 text-gray-500">days</span>
-                    </div>
-                    <div className="text-xs text-gray-500 mt-1">
-                        Typical range: 21-35 days
+                        <span className="ml-3 text-blossom/80 font-medium">days</span>
                     </div>
                 </div>
             </div>
 
             <button
                 onClick={calculateFertility}
-                className="w-full bg-pink-600 text-white px-4 py-3 rounded-md hover:bg-pink-700 transition-colors font-medium shadow-sm"
+                className="w-full bg-gradient-to-r from-blossom to-lavender text-white px-6 py-4 rounded-xl hover:shadow-lg transition-all font-poppins font-semibold hover:scale-[1.02]"
             >
-                Calculate Fertility Window
+                Generate Cycle Map
             </button>
         </div>
     );

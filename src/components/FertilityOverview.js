@@ -1,3 +1,5 @@
+import { FaRegCalendarCheck, FaSeedling, FaEgg } from "react-icons/fa";
+
 export default function FertilityOverview({
                                               nextPeriod,
                                               fertileWindow,
@@ -5,34 +7,47 @@ export default function FertilityOverview({
                                           }) {
     const formatDate = (date) => {
         return date.toLocaleDateString('en-US', {
-            weekday: 'short',
             month: 'short',
             day: 'numeric'
         });
     };
 
     return (
-        <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-            <h3 className="text-xl font-semibold mb-4 text-gray-800">
-                Your Fertility Overview
+        <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 mb-6 shadow-soft">
+            <h3 className="text-xl font-playfair font-semibold mb-6 text-blossom">
+                Cycle Overview
             </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                <div className="bg-pink-50 p-4 rounded-lg border border-pink-100">
-                    <h4 className="font-medium text-pink-800 mb-1">Next Period</h4>
-                    <p className="text-2xl font-bold text-pink-600">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {/* Next Period Card */}
+                <div className="bg-moonlight p-4 rounded-xl border border-lavender/20">
+                    <div className="flex items-center gap-2 mb-2 text-blossom">
+                        <FaRegCalendarCheck className="text-xl" />
+                        <h4 className="font-poppins font-medium">Next Period</h4>
+                    </div>
+                    <p className="text-2xl font-playfair font-bold text-gray-700">
                         {formatDate(nextPeriod)}
                     </p>
                 </div>
-                <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-100">
-                    <h4 className="font-medium text-yellow-800 mb-1">Fertile Window</h4>
-                    <p className="text-2xl font-bold text-yellow-600">
+
+                {/* Fertile Window Card */}
+                <div className="bg-moonlight p-4 rounded-xl border border-lavender/20">
+                    <div className="flex items-center gap-2 mb-2 text-lavender">
+                        <FaSeedling className="text-xl" />
+                        <h4 className="font-poppins font-medium">Fertile Window</h4>
+                    </div>
+                    <p className="text-2xl font-playfair font-bold text-gray-700">
                         {formatDate(fertileWindow.start)} - {formatDate(fertileWindow.end)}
                     </p>
                 </div>
-                <div className="bg-red-50 p-4 rounded-lg border border-red-100">
-                    <h4 className="font-medium text-red-800 mb-1">Ovulation Day</h4>
-                    <p className="text-2xl font-bold text-red-600">
+
+                {/* Ovulation Card */}
+                <div className="bg-moonlight p-4 rounded-xl border border-lavender/20">
+                    <div className="flex items-center gap-2 mb-2 text-peach">
+                        <FaEgg className="text-xl" />
+                        <h4 className="font-poppins font-medium">Ovulation</h4>
+                    </div>
+                    <p className="text-2xl font-playfair font-bold text-gray-700">
                         {formatDate(ovulationDate)}
                     </p>
                 </div>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { FaVenus, FaSeedling, FaMoon, FaSun, FaLeaf } from "react-icons/fa";
 import CalendarInputs from "./CalendarInputs";
 import FertilityOverview from "./FertilityOverview";
 import DailyCalendar from "./DailyCalendar";
@@ -35,24 +36,24 @@ export default function FertilityCalendar() {
             currentDay.setDate(start.getDate() + i);
 
             let status = "safe";
-            let label = "Safe period";
-            let emoji = "🟢";
+            let label = "Safe Period";
+            let icon = <FaLeaf className="text-sage" />;
             let description = "Low chance of pregnancy";
 
             if (currentDay.toDateString() === ovulationDay.toDateString()) {
                 status = "ovulation";
-                label = "Ovulation (Very fertile)";
-                emoji = "🔴";
-                description = "Highest chance of pregnancy";
+                label = "Ovulation";
+                icon = <FaSun className="text-blossom" />;
+                description = "Highest fertility";
             } else if (currentDay >= fertileStart && currentDay <= fertileEnd) {
                 status = "fertile";
-                label = "Fertile window";
-                emoji = "🟡";
-                description = "High chance of pregnancy";
+                label = "Fertile Window";
+                icon = <FaSeedling className="text-lavender" />;
+                description = "High fertility";
             } else if (i < 8) {
                 status = "period";
                 label = "Menstruation";
-                emoji = "🔵";
+                icon = <FaMoon className="text-peach" />;
                 description = "Menstrual phase";
             }
 
@@ -60,7 +61,7 @@ export default function FertilityCalendar() {
                 date: new Date(currentDay),
                 status,
                 label,
-                emoji,
+                icon,
                 description,
                 isToday: currentDay.toDateString() === new Date().toDateString()
             });
@@ -75,10 +76,18 @@ export default function FertilityCalendar() {
     };
 
     return (
-        <div className="p-4 max-w-3xl mx-auto font-sans">
-            <h1 className="text-3xl font-bold mb-6 text-center text-pink-700">
-                🌸 Fertility Calendar
-            </h1>
+        <div className="min-h-screen bg-gradient-to-b from-moonlight to-white p-4 max-w-5xl mx-auto">
+            <header className="text-center mb-8">
+                <div className="inline-flex items-center gap-3 bg-white/80 backdrop-blur-sm px-8 py-4 rounded-full shadow-soft">
+                    <FaVenus className="text-3xl text-blossom" />
+                    <h1 className="text-4xl font-playfair font-bold bg-gradient-to-r from-blossom to-lavender bg-clip-text text-transparent">
+                        Bloom Cycle
+                    </h1>
+                </div>
+                <p className="mt-4 text-gray-600 max-w-xl mx-auto font-poppins font-medium">
+                    Your natural cycle companion
+                </p>
+            </header>
 
             <CalendarInputs
                 startDate={startDate}

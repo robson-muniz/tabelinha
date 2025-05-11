@@ -8,54 +8,59 @@ export default function DailyCalendar({ days }) {
     };
 
     return (
-        <div className="bg-white rounded-lg shadow-md p-6 mb-6">
-            <h4 className="font-medium text-gray-700 mb-3">Daily Details</h4>
+        <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-soft">
+            <h4 className="font-playfair text-xl font-semibold mb-4 text-blossom">
+                Daily Breakdown
+            </h4>
+
             <div className="overflow-x-auto">
-                <table className="min-w-full divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
+                <table className="min-w-full divide-y divide-gray-200/50">
+                    <thead className="bg-moonlight">
                     <tr>
-                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-4 py-3 text-left text-sm font-poppins text-blossom">
                             Date
                         </th>
-                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-4 py-3 text-left text-sm font-poppins text-blossom">
                             Day
                         </th>
-                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th className="px-4 py-3 text-left text-sm font-poppins text-blossom">
                             Status
                         </th>
-                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Notes
+                        <th className="px-4 py-3 text-left text-sm font-poppins text-blossom">
+                            Description
                         </th>
                     </tr>
                     </thead>
-                    <tbody className="bg-white divide-y divide-gray-200">
+                    <tbody className="divide-y divide-gray-200/30">
                     {days.map((day, index) => (
                         <tr
                             key={index}
-                            className={`${day.isToday ? 'bg-blue-50' : ''} ${
-                                day.status === 'ovulation' ? 'bg-red-50' :
-                                    day.status === 'fertile' ? 'bg-yellow-50' : ''
+                            className={`${day.isToday ? 'bg-blossom/5' : ''} ${
+                                day.status === 'ovulation' ? 'bg-blossom/5' :
+                                    day.status === 'fertile' ? 'bg-lavender/5' : ''
                             }`}
                         >
-                            <td className="px-4 py-3 whitespace-nowrap">
-                                {formatDate(day.date)}
-                                {day.isToday && <span className="ml-2 text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Today</span>}
+                            <td className="px-4 py-3 whitespace-nowrap font-poppins">
+                                <div className="flex items-center gap-2">
+                                    {formatDate(day.date)}
+                                    {day.isToday && (
+                                        <span className="text-xs bg-blossom/10 text-blossom px-2 py-1 rounded-full">
+                        Today
+                      </span>
+                                    )}
+                                </div>
                             </td>
-                            <td className="px-4 py-3 whitespace-nowrap">
+                            <td className="px-4 py-3 whitespace-nowrap font-poppins">
                                 Day {index + 1}
                             </td>
                             <td className="px-4 py-3 whitespace-nowrap">
-                  <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                      day.status === 'ovulation' ? 'bg-red-100 text-red-800' :
-                          day.status === 'fertile' ? 'bg-yellow-100 text-yellow-800' :
-                              day.status === 'period' ? 'bg-blue-100 text-blue-800' :
-                                  'bg-green-100 text-green-800'
-                  }`}>
-                    {day.emoji} {day.label}
-                  </span>
+                                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-lavender/20">
+                                    {day.icon}
+                                    <span className="font-poppins text-sm">{day.label}</span>
+                                </div>
                             </td>
-                            <td className="px-4 py-3">
-                                <span className="text-sm text-gray-600">{day.description}</span>
+                            <td className="px-4 py-3 font-poppins text-gray-600">
+                                {day.description}
                             </td>
                         </tr>
                     ))}
